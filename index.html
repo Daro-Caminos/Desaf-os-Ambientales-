@@ -4,8 +4,30 @@
 <title>Desafíos Ambientales | Consorcio-TodoObras-Banda</title>
 <style>
 :root{--green:#176b43;--dark:#123b2b;--lime:#d7f28a;--bg:#f2f7f2;--ink:#203229;--red:#b83232}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,Arial,sans-serif}header{background:linear-gradient(130deg,var(--dark),var(--green));color:white;padding:24px 16px;border-bottom:5px solid var(--lime)}.wrap{max-width:920px;margin:auto;padding:0 14px}.brand{display:flex;align-items:center;gap:14px}.logo{display:grid;place-items:center;flex-shrink:0;width:54px;height:54px;background:white;color:var(--green);border:3px solid var(--lime);border-radius:15px;font-weight:900;font-size:23px}h1{font-size:clamp(1.35rem,4vw,2.1rem);line-height:1.15;margin:0}header p{margin:7px 0 0;color:#e4f7e9}main{padding:18px 0 35px}.panel{background:#fff;border:1px solid #dce8de;border-radius:18px;padding:18px;margin-bottom:15px;box-shadow:0 5px 18px #123b2b0b}.muted{color:#617166;font-size:.94rem}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}.game{background:#fbfdfb;border:1px solid #d5e4d8;border-radius:15px;padding:16px;text-align:left;color:inherit;cursor:pointer;font:inherit}.game:hover,.choice:hover{border-color:var(--green);background:#f1f9ef}.emoji{font-size:2rem}.game h3{margin:6px 0}.btn{border:0;border-radius:11px;background:var(--green);color:white;padding:11px 16px;font:inherit;font-weight:750;cursor:pointer}.btn.alt{background:#e5f1e7;color:var(--dark);border:1px solid #c8ddcd}.btn:disabled{opacity:.45;cursor:not-allowed}.hidden{display:none!important}.top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}.pill{display:inline-block;background:#e8f5d6;color:#315c20;border-radius:99px;padding:4px 10px;font-size:.8rem;font-weight:800}.question{font-size:1.2rem;font-weight:800;margin:18px 0 12px}.answers{display:grid;gap:9px}.choice{border:2px solid #dce6de;background:#fff;border-radius:12px;padding:12px;text-align:left;font:inherit;cursor:pointer}.choice.correct{background:#e5f7e9;border-color:#19804a}.choice.wrong{background:#fff0f0;border-color:var(--red)}.feedback{padding:12px;border-radius:11px;margin-top:12px}.good{background:#e5f7e9;color:#14552d}.bad{background:#fff0f0;color:#8b2424}.progress{height:8px;background:#e5ebe6;border-radius:99px;overflow:hidden;margin:12px 0}.progress span{display:block;height:100%;width:0;background:var(--lime)}.pairrow{display:grid;grid-template-columns:1fr 1.4fr;gap:8px;margin:9px 0}.pair{padding:11px;border:2px solid #dce6de;background:#fff;border-radius:10px;text-align:left;font:inherit;cursor:pointer}.pair.selected{border-color:#176b43;background:#eaf6e9}.pair.done{opacity:.65}.wordgrid{display:grid;grid-template-columns:repeat(15,minmax(0,1fr));gap:4px;margin:14px 0}.letter{aspect-ratio:1;border:1px solid #cdddcf;border-radius:5px;background:#fff;font-weight:800;font-size:clamp(.7rem,2.7vw,1rem);cursor:pointer;padding:0}.letter.selected{background:#d7f28a;border-color:#176b43}.letter.found{background:#b8e4bf;border-color:#176b43}.words{display:flex;gap:8px;flex-wrap:wrap}.word{background:#eef3ee;padding:5px 9px;border-radius:8px}.word.found{text-decoration:line-through;background:#d9f0dc}.footer{text-align:center;color:#69776d;font-size:.8rem;padding:12px}@media(max-width:540px){.panel{padding:14px}.pairrow{grid-template-columns:1fr}.wordgrid{gap:3px}}
+
+#accessGate{position:fixed;inset:0;z-index:9999;background:linear-gradient(135deg,#123b2b,#176b43);display:grid;place-items:center;padding:20px;color:#203229}
+#accessGate .gatecard{width:min(100%,430px);background:#fff;border-radius:20px;padding:26px;box-shadow:0 15px 50px #0003;text-align:center}
+#accessGate h2{color:#176b43;margin:8px 0}
+#accessGate input{width:100%;padding:13px;border:2px solid #cdddcf;border-radius:10px;font:inherit;margin:10px 0}
+#accessGate .gateerror{color:#b83232;min-height:1.5em;font-weight:700}
+#accessGate .btn{width:100%}
+body.locked{overflow:hidden}
 </style></head>
-<body><header><div class="wrap brand"><div class="logo">A+</div><div><h1>Desafíos Ambientales</h1><p><b>Área de Ambiente – Consorcio-TodoObras-Banda</b><br>Proyecto Sal de Oro – POSCO SAU</p></div></div></header>
+<body class="locked">
+<div id="accessGate" role="dialog" aria-modal="true" aria-labelledby="gateTitle">
+ <div class="gatecard">
+  <div style="font-size:3rem">🔐🌱</div>
+  <h2 id="gateTitle">Acceso a Desafíos Ambientales</h2>
+  <p>Ingresá el código de acceso que te brindó el equipo de Ambiente para comenzar los juegos.</p>
+  <form id="gateForm">
+   <label for="gateCode"><b>Código de acceso</b></label>
+   <input id="gateCode" type="password" autocomplete="off" placeholder="Ingresá el código" required>
+   <button class="btn" type="submit">Ingresar y jugar</button>
+  </form>
+  <p id="gateError" class="gateerror" aria-live="polite"></p>
+  <p class="muted">Área de Ambiente · Consorcio-TodoObras-Banda</p>
+ </div>
+</div><header><div class="wrap brand"><div class="logo">A+</div><div><h1>Desafíos Ambientales</h1><p><b>Área de Ambiente – Consorcio-TodoObras-Banda</b><br>Proyecto Sal de Oro – POSCO SAU</p></div></div></header>
 <main class="wrap">
 <section class="panel"><h2>🌱 Aprender jugando · Prevenir · Cuidar el ambiente</h2><p class="muted">Elegí una temática y después el juego que prefieras. Cada desafío estará enfocado en el tema seleccionado.</p><div class="top"><span class="pill" id="totalScore">⭐ Puntaje de esta sesión: 0</span><span class="muted">Ideal para jugar individualmente o en equipo</span></div></section>
 <section id="menu" class="panel"><h2>📚 Primero, elegí una temática</h2><p class="muted">Seleccioná el tema que querés practicar. Después vas a poder elegir uno de los cuatro juegos, con actividades de esa temática.</p><div id="topicGrid" class="grid"></div></section>
@@ -20,6 +42,18 @@
 <div class="footer">Desafíos Ambientales · Área de Ambiente · Consorcio-TodoObras-Banda · Proyecto Sal de Oro – POSCO SAU</div>
 </main>
 <script>
+const ACCESS_CODE='MACTOB2026';
+document.addEventListener('DOMContentLoaded',()=>{
+ const form=document.getElementById('gateForm'),input=document.getElementById('gateCode'),gate=document.getElementById('accessGate'),err=document.getElementById('gateError');
+ form.addEventListener('submit',e=>{
+  e.preventDefault();
+  if(input.value.trim().toUpperCase()===ACCESS_CODE){
+   gate.remove();document.body.classList.remove('locked');
+  }else{err.textContent='Código incorrecto. Revisá el código e intentá nuevamente.';input.value='';input.focus();}
+ });
+ input.focus();
+});
+
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 let score=0,gameNow='',roundScore=0,currentTopic='';
 const topics=[
